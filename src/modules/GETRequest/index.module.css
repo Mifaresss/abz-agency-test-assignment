@@ -1,0 +1,16 @@
+.getRequest {
+	grid-column: content;
+	display: flex;
+	flex-direction: column;
+	gap: 3.125rem;
+}
+
+.title {
+	text-align: center;
+}
+
+.users {
+	display: flex;
+	gap: 1.8125rem;
+	flex-wrap: wrap;
+}
