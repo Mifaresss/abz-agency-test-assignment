@@ -10,7 +10,24 @@
 }
 
 .users {
+	min-width: 100%;
 	display: flex;
 	gap: 1.8125rem;
 	flex-wrap: wrap;
+	/* display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.8125rem; */
+	justify-content: center;
+	align-items: center;
+}
+
+@media (max-width: 768px) {
+	.users {
+		gap: 1rem;
+	}
+}
+@media (max-width: 360px) {
+	.users {
+		width: 1.25rem;
+	}
 }
