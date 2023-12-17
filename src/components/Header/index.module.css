@@ -1,4 +1,4 @@
-.main {
+.header {
 	--gap: clamp(1rem, 6vw, 3.75rem);
 	--full: minmax(var(--gap), 1fr);
 	--content: min(73.125rem, 100% - var(--gap) * 2);
@@ -15,6 +15,27 @@
 		var(--feature) [feature-end]
 		var(--full) [full-end];
 
-	margin-top: 3.75rem;
-	row-gap: 8.75rem;
+	position: fixed;
+	width: 100vw;
+	height: 3.75rem;
+	background-color: var(--light-c);
+}
+
+.container {
+	grid-column: content;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	overflow: hidden;
+}
+
+.wrapperButtons {
+	display: flex;
+	gap: 0.625rem;
+}
+
+@media (max-width: 768px) {
+	.header {
+		--gap: clamp(1rem, 4.4vw, 2rem);
+	}
 }

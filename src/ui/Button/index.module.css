@@ -1,0 +1,19 @@
+.button {
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 6.25rem;
+	height: 2.125rem;
+	background-color: var(--yellow-c);
+	border-radius: var(--border-radius);
+}
+
+.button:hover {
+	background-color: var(--yellow-hover-c);
+}
+
+.button:disabled {
+	background-color: var(--light-disabled-c);
+	color: var(--light-disabled-c);
+}
