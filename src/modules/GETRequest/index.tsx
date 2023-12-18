@@ -1,33 +1,65 @@
 'use client'
 import { Card } from '@/components/Card'
-import { useUsersStore } from '@/store/users'
+import { UsersState, useUsersStore, usersDataFromResponse } from '@/store/users'
+import { Button } from '@/ui/Button'
 import { Title } from '@/ui/Title'
 import { getClsNames } from '@/utils/getClsNames'
 import { useEffect } from 'react'
+import { Loader } from '@/ui/Loader'
 import s from './index.module.css'
+import { Error } from '@/ui/Error'
 
 interface Props {}
 
-export function GETRequest({}: Props) {
-	const users = useUsersStore(s => s.users)
-	const getUsers = useUsersStore(s => s.getUsers)
+export function GetRequest({}: Props) {
+	const { error, isLoading, users, fetchUsers, links, setState } = useUsersStore(s => s)
 
 	useEffect(() => {
-		getUsers()
-	}, [getUsers])
+		fetchUsers()
+	}, [fetchUsers])
 
-	useEffect(() => {
-		console.log(users)
-	}, [users])
+	async function handleClick() {
+		if (links.nextUrl) {
+			setState({ isLoading: true })
+			try {
+				const res = await fetch(links.nextUrl)
+				const data = await res.json()
+				const mergedData = usersDataFromResponse({
+					...data,
+					users: [...users, ...data.users],
+				})
+				setState(mergedData)
+			} catch (error) {
+				setState({ error: error as Error })
+			} finally {
+				setState({ isLoading: false })
+			}
+		}
+	}
 
 	return (
 		<section className={getClsNames(s.getRequest)}>
 			<Title className={getClsNames(s.title)} label='Working with GET request' />
-			<ul className={getClsNames(s.users)}>
-				{users.map(user => (
-					<Card key={user.id} {...user} />
-				))}
-			</ul>
+			{isLoading ? (
+				<Loader />
+			) : error ? (
+				<Error error={error.message} />
+			) : (
+				<>
+					<ul className={getClsNames(s.users)}>
+						{users.map(user => (
+							<Card key={user.id} {...user} />
+						))}
+					</ul>
+					{links.nextUrl && (
+						<Button
+							onClick={handleClick}
+							className={getClsNames(s.button)}
+							label='Show more'
+						/>
+					)}
+				</>
+			)}
 		</section>
 	)
 }

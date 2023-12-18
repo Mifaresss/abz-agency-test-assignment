@@ -1,13 +1,18 @@
-import { GETRequest } from '@/modules/GETRequest'
+import { GetRequest } from '@/modules/GetRequest'
 import { HeroSection } from '@/modules/HeroSection'
 import s from './page.module.css'
+import { PostRequest } from '@/modules/PostRequest'
+import { Loader } from '@/ui/Loader'
 
 export default function Home() {
 	return (
 		<main className={s.main}>
 			<HeroSection />
-			<GETRequest />
-			<div style={{ gridColumn: 'content' }}>footer</div>
+			<GetRequest />
+			<PostRequest />
+			{/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+				<Loader />
+			</div> */}
 		</main>
 	)
 }
