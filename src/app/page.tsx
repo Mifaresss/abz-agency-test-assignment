@@ -10,9 +10,6 @@ export default function Home() {
 			<HeroSection />
 			<GetRequest />
 			<PostRequest />
-			{/* <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-				<Loader />
-			</div> */}
 		</main>
 	)
 }

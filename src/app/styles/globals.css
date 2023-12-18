@@ -4,6 +4,8 @@
 
 	--dark-c: #000000de;
 
+	--dangerous-c: #cb3d40;
+
 	--yellow-c: #f4e041;
 	--yellow-hover-c: #ffe302;
 
@@ -16,6 +18,8 @@
 	--secondary-bg-c: #b4b4b4;
 
 	--border-radius: 5rem;
+
+	--main-transit: 0.2s;
 }
 
 html,

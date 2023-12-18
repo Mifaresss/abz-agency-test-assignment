@@ -1,0 +1,65 @@
+.label {
+	position: relative;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	padding-left: 2rem;
+}
+
+.icon {
+	position: absolute;
+	width: 1.25rem;
+	height: 1.25rem;
+	left: 0;
+}
+
+.external {
+	stroke: var(--gray-border-c);
+	transition: stroke var(--main-transit);
+}
+.internal {
+	fill: transparent;
+	transition: fill var(--main-transit);
+}
+
+.label:has(.input:checked) .external {
+	stroke: var(--blue-c);
+}
+.label:has(.input:checked) .internal {
+	fill: var(--blue-c);
+}
+
+.input {
+	position: absolute;
+	appearance: none;
+}
+
+/* ======================================= Try native CSS ======================================= */
+/* .label:before {
+	content: '';
+	display: block;
+	width: 1.25rem;
+	height: 1.25rem;
+	border: 0.0625rem solid var(--gray-border-c);
+	border-radius: 50%;
+	transition: border-color var(--main-transit);
+}
+.label::after {
+	content: '';
+	position: absolute;
+	top: calc(50% - 0.3125rem);
+	left: 0.3125rem;
+	width: 0.625rem;
+	height: 0.625rem;
+	border-radius: 50%;
+	background-color: var(--blue-c);
+	display: block;
+	opacity: 0;
+	transition: opacity var(--main-transit);
+}
+.label:has(.input:checked)::after {
+	opacity: 1;
+}
+.label:has(.input:checked)::before {
+	border-color: var(--blue-c);
+} */

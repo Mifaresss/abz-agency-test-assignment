@@ -5,7 +5,7 @@ import './styles/reset.css'
 import './styles/globals.css'
 
 const nunito = Nunito({
-	weight: '400',
+	weight: ['400', '500'],
 	style: 'normal',
 	subsets: ['latin'],
 	display: 'swap',
