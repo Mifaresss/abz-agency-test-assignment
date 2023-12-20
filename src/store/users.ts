@@ -15,7 +15,7 @@ export type UsersState = {
 	isLoading: boolean
 }
 type Actions = {
-	fetchUsers: (path?: string) => Promise<void>
+	fetchUsers: () => Promise<void>
 	setState: (state: Partial<UsersState>) => void
 }
 

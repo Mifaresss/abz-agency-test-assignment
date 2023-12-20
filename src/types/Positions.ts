@@ -5,7 +5,7 @@ export enum PositionName {
 	LAWYER = 'Lawyer',
 }
 
-export type Positions = {
+export type Position = {
 	id: number
-	position: PositionName
+	name: PositionName
 }

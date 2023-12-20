@@ -5,3 +5,36 @@
 	flex-direction: column;
 	gap: 3.125rem;
 }
+
+.radioButtons {
+	margin-top: -0.4375rem;
+	position: relative;
+}
+
+.radioButtonsTitle {
+	display: block;
+	margin-bottom: 0.6875rem;
+}
+
+.buttonsWrapper {
+	display: flex;
+	flex-direction: column;
+	gap: 0.4375rem;
+}
+
+.positionError {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	font-size: 0.75rem;
+	line-height: 0.875rem;
+	color: var(--dangerous-c);
+}
+
+.fileUpload {
+	margin-top: -0.1875rem;
+}
+
+.signUpButton {
+	align-self: center;
+}

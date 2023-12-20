@@ -5,7 +5,7 @@
 		"prettier/prettier": [
 			"error",
 			{
-				"printWidth": 100,
+				"printWidth": 90,
 				"arrowParens": "avoid",
 				"semi": false,
 				"singleQuote": true,
