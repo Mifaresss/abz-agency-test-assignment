@@ -12,6 +12,7 @@ export function HeroSection({}: Props) {
 	return (
 		<section className={getClsNames(s.heroSection)}>
 			<Image
+				priority
 				className={getClsNames(s.backgroundImg)}
 				src={mainBackgroundImg}
 				quality={90}
