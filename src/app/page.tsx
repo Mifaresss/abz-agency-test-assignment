@@ -1,14 +1,14 @@
-import { GetRequest } from '@/modules/GetRequest'
+import { GETRequest } from '@/modules/GETRequest'
 import { HeroSection } from '@/modules/HeroSection'
-import { PostRequest } from '@/modules/PostRequest'
+import { POSTRequest } from '@/modules/POSTRequest'
 import s from './page.module.css'
 
 export default function Home() {
 	return (
 		<main className={s.main}>
 			<HeroSection />
-			<GetRequest />
-			<PostRequest />
+			<GETRequest />
+			<POSTRequest />
 		</main>
 	)
 }

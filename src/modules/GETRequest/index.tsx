@@ -11,7 +11,7 @@ import s from './index.module.css'
 
 interface Props {}
 
-export function GetRequest({}: Props) {
+export function GETRequest({}: Props) {
 	const { error, isLoading, users, fetchUsers, links, setState } = useUsersStore(s => s)
 
 	useEffect(() => {
