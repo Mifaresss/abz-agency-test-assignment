@@ -1,13 +1,13 @@
 'use client'
 import { Card } from '@/components/Card'
-import { UsersState, useUsersStore, usersDataFromResponse } from '@/store/users'
+import { useUsersStore, usersDataFromResponse } from '@/store/users'
 import { Button } from '@/ui/Button'
+import { Error } from '@/ui/Error'
+import { Loader } from '@/ui/Loader'
 import { Title } from '@/ui/Title'
 import { getClsNames } from '@/utils/getClsNames'
 import { useEffect } from 'react'
-import { Loader } from '@/ui/Loader'
 import s from './index.module.css'
-import { Error } from '@/ui/Error'
 
 interface Props {}
 
@@ -38,7 +38,7 @@ export function GetRequest({}: Props) {
 	}
 
 	return (
-		<section className={getClsNames(s.getRequest)}>
+		<section className={getClsNames(s.getRequest)} id='users'>
 			<Title className={getClsNames(s.title)} label='Working with GET request' />
 			{isLoading ? (
 				<Loader />

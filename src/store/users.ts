@@ -2,6 +2,7 @@ import { apiBaseUrl } from '@/api'
 import { User } from '@/types/User'
 import { sortUsersByRegistrationDate } from '@/utils/sortUsersByRegistrationDate'
 import { create } from 'zustand'
+import { TokenState } from './token'
 
 export type UsersState = {
 	users: User[]
@@ -17,6 +18,10 @@ export type UsersState = {
 type Actions = {
 	fetchUsers: () => Promise<void>
 	setState: (state: Partial<UsersState>) => void
+	createUser: (
+		token: TokenState['token'],
+		newUser: Omit<User, 'id' | 'position' | 'registration_timestamp'>,
+	) => Promise<void>
 }
 
 export function usersDataFromResponse(data: any): Omit<UsersState, 'isLoading'> {
@@ -56,5 +61,30 @@ export const useUsersStore = create<UsersState & Actions>(set => ({
 	},
 	setState: data => {
 		set(data)
+	},
+	createUser: async (token, newUser) => {
+		const headers: HeadersInit = new Headers()
+		if (token) {
+			headers.set('Token', token)
+		}
+
+		const formData = new FormData()
+		formData.append('name', newUser.name)
+		formData.append('email', newUser.email)
+		formData.append('phone', newUser.phone)
+		formData.append('position_id', String(newUser.position_id))
+		formData.append('photo', newUser.photo)
+
+		try {
+			const res = await fetch(`${apiBaseUrl}/users/`, {
+				method: 'POST',
+				body: formData,
+				headers,
+			})
+			const data = await res.json()
+			console.log('res from create user:', data)
+		} catch (error) {
+			console.error(error)
+		}
 	},
 }))

@@ -1,4 +1,6 @@
 import { usePositionsStore } from '@/store/positions'
+import { useTokenStore } from '@/store/token'
+import { useUsersStore } from '@/store/users'
 import { Button } from '@/ui/Button'
 import { Error } from '@/ui/Error'
 import { Loader } from '@/ui/Loader'
@@ -15,23 +17,12 @@ import { FormState, validationShema } from './validation'
 export function Form() {
 	const formId = useId()
 	const { isLoading, error, positions, fetchPositions } = usePositionsStore(s => s)
+	const { fetchToken } = useTokenStore(s => s)
+	const createUser = useUsersStore(s => s.createUser)
 
 	useEffect(() => {
 		fetchPositions()
 	}, [fetchPositions])
-
-	// const { register, handleSubmit } = useForm()
-
-	// const onSubmit = (data: any) => {
-	// 	console.log(data)
-	// }
-
-	// return (
-	// 	<form onSubmit={handleSubmit(onSubmit)}>
-	// 		<ProfilePicture register={register} />
-	// 		<Button label='Submit' />
-	// 	</form>
-	// )
 
 	const {
 		register,
@@ -42,8 +33,18 @@ export function Form() {
 		resolver: yupResolver(validationShema),
 	})
 
-	async function onSubmit(e: FormState) {
-		console.log('onSubmit:', e)
+	async function onSubmit(data: FormState) {
+		const token = await fetchToken()
+
+		const dataToRequest = {
+			name: data.name,
+			email: data.email,
+			phone: data.phone,
+			position_id: data.position,
+			photo: data.photo[0],
+		}
+
+		createUser(token, dataToRequest)
 	}
 
 	return (

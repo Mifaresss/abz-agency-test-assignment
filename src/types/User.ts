@@ -4,9 +4,9 @@ export type User = {
 	id: number
 	name: string
 	email: string
-	phone: number
+	phone: string
 	position: PositionName
 	position_id: number
 	registration_timestamp: number
-	photo: string
+	photo: File
 }

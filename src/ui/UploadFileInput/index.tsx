@@ -8,9 +8,8 @@ interface Props extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
 }
 
 export const UploadFileInput = forwardRef<HTMLInputElement, Props>(
-	({ label, error, id, className, onChange, accept, ...props }: Props, ref) => {
+	({ label, error, id, className, onChange, ...props }: Props, ref) => {
 		const innerId = useId()
-		console.log(accept)
 
 		const [fileName, setFileName] = useState('')
 
@@ -35,7 +34,6 @@ export const UploadFileInput = forwardRef<HTMLInputElement, Props>(
 					id={id ?? innerId}
 					type='file'
 					ref={ref}
-					accept={accept}
 					onChange={handleFileChange}
 					{...props}
 				/>
