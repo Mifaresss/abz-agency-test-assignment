@@ -14,7 +14,7 @@ export function HeroSection({}: Props) {
 			<Image
 				className={getClsNames(s.backgroundImg)}
 				src={mainBackgroundImg}
-				quality={100}
+				quality={90}
 				alt='Ukraine landscape'
 			/>
 			<div className={getClsNames(s.content)}>
