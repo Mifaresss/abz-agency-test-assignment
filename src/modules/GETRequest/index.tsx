@@ -21,6 +21,7 @@ export function GetRequest({}: Props) {
 	async function handleClick() {
 		if (links.nextUrl) {
 			setState({ isLoading: true })
+
 			try {
 				const res = await fetch(links.nextUrl)
 				const data = await res.json()

@@ -19,6 +19,8 @@
 	width: 100vw;
 	height: 3.75rem;
 	background-color: var(--light-c);
+
+	z-index: 1;
 }
 
 .container {
