@@ -21,7 +21,11 @@ type Actions = {
 	createUser: (
 		token: TokenState['token'],
 		newUser: Omit<User, 'id' | 'position' | 'registration_timestamp'>,
-	) => Promise<void>
+	) => Promise<{
+		message: string
+		success: boolean
+		user_id: number
+	}>
 }
 
 export function usersDataFromResponse(data: any): Omit<UsersState, 'isLoading'> {
@@ -78,13 +82,14 @@ export const useUsersStore = create<UsersState & Actions>(set => ({
 		try {
 			const res = await fetch(`${apiBaseUrl}/users/`, {
 				method: 'POST',
-				body: formData,
 				headers,
+				body: formData,
 			})
 			const data = await res.json()
-			console.log('res from create user:', data)
+			return data
 		} catch (error) {
 			console.error(error)
+			return error
 		}
 	},
 }))

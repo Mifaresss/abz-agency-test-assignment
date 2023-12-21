@@ -2,15 +2,41 @@
 import { Form } from '@/components/Form'
 import { Title } from '@/ui/Title'
 import { getClsNames } from '@/utils/getClsNames'
+import successUserCreation from '@images/success-image.png'
+import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import s from './index.module.css'
 
-interface Props {}
+export function PostRequest() {
+	const [creationResult, setCreationResult] = useState('')
 
-export function PostRequest({}: Props) {
+	useEffect(() => {
+		if (creationResult) {
+			const timeoutFn = setTimeout(() => {
+				setCreationResult('')
+			}, 5000)
+
+			return () => {
+				clearTimeout(timeoutFn)
+			}
+		}
+	}, [creationResult])
+
 	return (
 		<section className={getClsNames(s.postRequest)} id='sign-up'>
-			<Title className={getClsNames(s.title)} label='Working with POST request' />
-			<Form />
+			<Title
+				className={getClsNames(s.title)}
+				label={creationResult || 'Working with POST request'}
+			/>
+			{creationResult ? (
+				<Image
+					className={getClsNames(s.successImg)}
+					src={successUserCreation}
+					alt='Success user creation'
+				/>
+			) : (
+				<Form setCreationResult={setCreationResult} />
+			)}
 		</section>
 	)
 }

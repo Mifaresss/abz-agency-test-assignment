@@ -9,16 +9,21 @@ import { TextInput } from '@/ui/TextInput'
 import { UploadFileInput } from '@/ui/UploadFileInput'
 import { getClsNames } from '@/utils/getClsNames'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { useEffect, useId } from 'react'
+import { Dispatch, SetStateAction, useEffect, useId } from 'react'
 import { useForm } from 'react-hook-form'
 import s from './index.module.css'
 import { FormState, validationShema } from './validation'
 
-export function Form() {
+interface Props {
+	setCreationResult: Dispatch<SetStateAction<string>>
+}
+
+export function Form({ setCreationResult }: Props) {
 	const formId = useId()
 	const { isLoading, error, positions, fetchPositions } = usePositionsStore(s => s)
-	const { fetchToken } = useTokenStore(s => s)
+	const { token, fetchToken } = useTokenStore(s => s)
 	const createUser = useUsersStore(s => s.createUser)
+	const fetchUsers = useUsersStore(s => s.fetchUsers)
 
 	useEffect(() => {
 		fetchPositions()
@@ -34,7 +39,7 @@ export function Form() {
 	})
 
 	async function onSubmit(data: FormState) {
-		const token = await fetchToken()
+		const actualToken = token ?? (await fetchToken())
 
 		const dataToRequest = {
 			name: data.name,
@@ -44,7 +49,15 @@ export function Form() {
 			photo: data.photo[0],
 		}
 
-		createUser(token, dataToRequest)
+		const res = await createUser(actualToken, dataToRequest)
+
+		if (res.success) {
+			reset()
+			setCreationResult('User successfully registered')
+			fetchUsers()
+		} else {
+			setCreationResult(res.message)
+		}
 	}
 
 	return (
