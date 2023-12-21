@@ -14,10 +14,11 @@ export function HeroSection({}: Props) {
 					label='Test assignment for front-end developer'
 				/>
 				<p className={getClsNames(s.text)}>
-					What defines a good front-end developer is one that has skilled knowledge of HTML,
-					CSS, JS with a vast understanding of User design thinking as they&apos;ll be building
-					web interfaces with accessibility in mind. They should also be excited to learn, as
-					the world of Front-End Development keeps evolving.
+					What defines a good front-end developer is one that has skilled knowledge
+					of HTML, CSS, JS with a vast understanding of User design thinking as
+					they&apos;ll be building web interfaces with accessibility in mind. They
+					should also be excited to learn, as the world of Front-End Development
+					keeps evolving.
 				</p>
 				<Button className={getClsNames(s.button)} label='Sign up' />
 			</div>

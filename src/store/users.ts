@@ -1,5 +1,5 @@
 import { apiBaseUrl } from '@/api'
-import { User } from '@/types/User'
+import { NewUser, User } from '@/types/User'
 import { sortUsersByRegistrationDate } from '@/utils/sortUsersByRegistrationDate'
 import { create } from 'zustand'
 import { TokenState } from './token'
@@ -20,7 +20,7 @@ type Actions = {
 	setState: (state: Partial<UsersState>) => void
 	createUser: (
 		token: TokenState['token'],
-		newUser: Omit<User, 'id' | 'position' | 'registration_timestamp'>,
+		newUser: NewUser,
 	) => Promise<{
 		message: string
 		success: boolean

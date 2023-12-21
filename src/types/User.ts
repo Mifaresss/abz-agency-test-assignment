@@ -8,5 +8,10 @@ export type User = {
 	position: PositionName
 	position_id: number
 	registration_timestamp: number
-	photo: File
+	photo: string
 }
+
+export type NewUser = Omit<
+	User,
+	'id' | 'position' | 'registration_timestamp' | 'photo'
+> & { photo: File }

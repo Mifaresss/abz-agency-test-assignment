@@ -9,7 +9,11 @@ interface Props extends HTMLAttributes<HTMLButtonElement> {
 
 export function Button({ label, className, disabled, ...props }: Props) {
 	return (
-		<button className={getClsNames(s.button, [className])} disabled={disabled} {...props}>
+		<button
+			className={getClsNames(s.button, [className])}
+			disabled={disabled}
+			{...props}
+		>
 			{label}
 		</button>
 	)
