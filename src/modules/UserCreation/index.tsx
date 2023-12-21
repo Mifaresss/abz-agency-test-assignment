@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import s from './index.module.css'
 
-export function POSTRequest() {
+export function UserCreation() {
 	const [creationResult, setCreationResult] = useState('')
 
 	useEffect(() => {
@@ -23,7 +23,7 @@ export function POSTRequest() {
 	}, [creationResult])
 
 	return (
-		<section className={getClsNames(s.postRequest)} id='sign-up'>
+		<section className={getClsNames(s.userCreation)} id='sign-up'>
 			<Title
 				className={getClsNames(s.title)}
 				label={creationResult || 'Working with POST request'}

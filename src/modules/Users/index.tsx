@@ -11,7 +11,7 @@ import s from './index.module.css'
 
 interface Props {}
 
-export function GETRequest({}: Props) {
+export function Users({}: Props) {
 	const { error, isLoading, users, fetchUsers, links, setState } = useUsersStore(s => s)
 
 	useEffect(() => {
@@ -39,7 +39,7 @@ export function GETRequest({}: Props) {
 	}
 
 	return (
-		<section className={getClsNames(s.getRequest)} id='users'>
+		<section className={getClsNames(s.usersSection)} id='users'>
 			<Title className={getClsNames(s.title)} label='Working with GET request' />
 			{isLoading ? (
 				<Loader />
