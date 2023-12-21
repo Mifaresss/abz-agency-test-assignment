@@ -1,12 +1,18 @@
 .heroSection {
 	grid-column: content;
-	background-image: url('../../../public/images/main-background.png');
-	background-repeat: no-repeat;
-	background-size: cover;
 	height: 40.625rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	position: relative;
+}
+
+.backgroundImg {
+	position: absolute;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .content {

@@ -1,6 +1,8 @@
 import { Button } from '@/ui/Button'
 import { Title } from '@/ui/Title'
 import { getClsNames } from '@/utils/getClsNames'
+import mainBackgroundImg from '@images/main-background.png'
+import Image from 'next/image'
 import s from './index.module.css'
 
 interface Props {}
@@ -8,6 +10,11 @@ interface Props {}
 export function HeroSection({}: Props) {
 	return (
 		<section className={getClsNames(s.heroSection)}>
+			<Image
+				className={getClsNames(s.backgroundImg)}
+				src={mainBackgroundImg}
+				alt='Ukraine landscape'
+			/>
 			<div className={getClsNames(s.content)}>
 				<Title
 					className={getClsNames(s.title)}
