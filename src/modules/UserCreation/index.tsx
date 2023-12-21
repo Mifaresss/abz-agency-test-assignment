@@ -30,6 +30,7 @@ export function UserCreation() {
 			/>
 			{creationResult ? (
 				<Image
+					loading='eager'
 					className={getClsNames(s.successImg)}
 					src={successUserCreation}
 					alt='Success user creation'

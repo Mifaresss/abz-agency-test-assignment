@@ -3,6 +3,7 @@ import { Title } from '@/ui/Title'
 import { getClsNames } from '@/utils/getClsNames'
 import mainBackgroundImg from '@images/main-background.png'
 import Image from 'next/image'
+import Link from 'next/link'
 import s from './index.module.css'
 
 interface Props {}
@@ -27,7 +28,9 @@ export function HeroSection({}: Props) {
 					should also be excited to learn, as the world of Front-End Development
 					keeps evolving.
 				</p>
-				<Button className={getClsNames(s.button)} label='Sign up' />
+				<Link href='#sign-up'>
+					<Button className={getClsNames(s.button)} label='Sign up' />
+				</Link>
 			</div>
 		</section>
 	)
