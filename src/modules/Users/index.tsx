@@ -6,13 +6,14 @@ import { Error } from '@/ui/Error'
 import { Loader } from '@/ui/Loader'
 import { Title } from '@/ui/Title'
 import { getClsNames } from '@/utils/getClsNames'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import s from './index.module.css'
 
 interface Props {}
 
 export function Users({}: Props) {
 	const { error, isLoading, users, fetchUsers, links, setState } = useUsersStore(s => s)
+	const [internalIsLoading, setInternalIsLoading] = useState(false)
 
 	useEffect(() => {
 		fetchUsers()
@@ -20,7 +21,7 @@ export function Users({}: Props) {
 
 	async function handleClick() {
 		if (links.nextUrl) {
-			setState({ isLoading: true })
+			setInternalIsLoading(true)
 
 			try {
 				const res = await fetch(links.nextUrl)
@@ -33,7 +34,7 @@ export function Users({}: Props) {
 			} catch (error) {
 				setState({ error: error as Error })
 			} finally {
-				setState({ isLoading: false })
+				setInternalIsLoading(false)
 			}
 		}
 	}
@@ -52,13 +53,16 @@ export function Users({}: Props) {
 							<Card key={user.id} {...user} />
 						))}
 					</ul>
-					{links.nextUrl && (
-						<Button
-							onClick={handleClick}
-							className={getClsNames(s.button)}
-							label='Show more'
-						/>
-					)}
+					{links.nextUrl &&
+						(internalIsLoading ? (
+							<Loader />
+						) : (
+							<Button
+								onClick={handleClick}
+								className={getClsNames(s.button)}
+								label='Show more'
+							/>
+						))}
 				</>
 			)}
 		</section>
