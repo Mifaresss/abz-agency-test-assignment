@@ -116,9 +116,6 @@ export function Form({ setCreationResult }: Props) {
 			/>
 			<Button
 				className={s.signUpButton}
-				onClick={() => {
-					console.log('errors:', errors)
-				}}
 				disabled={!Object.keys(touchedFields).length}
 				label='Sign up'
 			/>
