@@ -14,6 +14,7 @@ export const UploadFileInput = forwardRef<HTMLInputElement, Props>(
 		const [fileName, setFileName] = useState('')
 
 		function handleFileChange(e: ChangeEvent<HTMLInputElement>) {
+			onChange?.(e)
 			if (e.target.files && e.target.files.length > 0) {
 				setFileName(e.target.files[0].name)
 			} else {
